@@ -1,77 +1,90 @@
-{
-    public static void display(Node head)  //  linked list via iterative approach
-    {
-        Node curr=head;
-        while(curr!=null)
-        {
-            System.out.print(curr.data+" ");
-            curr=curr.link;
-        }
-    }
-    public static void rec_display(Node head)  //  linked list via recursive approach
-    {
-        if(head==null)
-            return;
-        System.out.print(head.data+" ");
-        rec_display(head.link);
-    }
-
-    public static void rev_rec_display(Node head)  // Reverse linked list via recursive approach
-    {
-        if(head==null)
-            return;
-        rev_rec_display(head.link);
-        System.out.print(head.data+" ");
-    }
-
-    public static int search(Node head,int x)    // Search an element via iterative
-    {
-        Node curr=head;
-        while(curr!=null)
-        {
-            if(curr.data==x)
-                return 1;
-            else
-                curr=curr.link;
-        }
-        return 0;
-    }
-
-    public static Node Insert_begin(int data,Node head) // insert At Begining 
-    {
-        Node temp=new Node(data);
-        temp.link=head;
-        return temp;
-    }
-
-    public static void main(String args[])
-    {
-        Node head=new Node(10);
-        Node temp=new Node(20);
-        Node temp2=new Node(30);
-        head.link=temp;
-        temp.link=temp2;
-       // Node head=null;
-        head=Insert_begin(5,head);
-        head=Insert_begin(2,head);
-        display(head);
-
-        System.out.println();
-        rec_display(head);
-
-        System.out.println();
-
-        rev_rec_display(head);
-
-
-//        if(search(head,40)==1)
-//            System.out.println("MIL GYA ELEMENT");
-//        else
-//            System.out.println("NOT FOUND");
-
-
-
-
-
-    }
-}
+//import java.util.LinkedList;
+//
+//class Node
+//{
+//    int data;
+//    Node link;
+//    Node(int x)
+//    {
+//        data=x;
+//        link=null;
+//    }
+//}
+//class Main
+//{
+//    public static void display(Node head)  //  linked list via iterative approach
+//    {
+//        Node curr=head;
+//        while(curr!=null)
+//        {
+//            System.out.print(curr.data+" ");
+//            curr=curr.link;
+//        }
+//    }
+//    public static void rec_display(Node head)  //  linked list via recursive approach
+//    {
+//        if(head==null)
+//            return;
+//        System.out.print(head.data+" ");
+//        rec_display(head.link);
+//    }
+//
+//    public static void rev_rec_display(Node head)  // Reverse linked list via recursive approach
+//    {
+//        if(head==null)
+//            return;
+//        rev_rec_display(head.link);
+//        System.out.print(head.data+" ");
+//    }
+//
+//    public static int search(Node head,int x)    // Search an element via iterative
+//    {
+//        Node curr=head;
+//        while(curr!=null)
+//        {
+//            if(curr.data==x)
+//                return 1;
+//            else
+//                curr=curr.link;
+//        }
+//        return 0;
+//    }
+//
+//    public static Node Insert_begin(int data,Node head) // insert At Begining
+//    {
+//        Node temp=new Node(data);
+//        temp.link=head;
+//        return temp;
+//    }
+//
+//    public static void main(String args[])
+//    {
+//        Node head=new Node(10);
+//        Node temp=new Node(20);
+//        Node temp2=new Node(30);
+//        head.link=temp;
+//        temp.link=temp2;
+//       // Node head=null;
+//        head=Insert_begin(5,head);
+//        head=Insert_begin(2,head);
+//        display(head);
+//
+//        System.out.println();
+//        rec_display(head);
+//
+//        System.out.println();
+//
+//        rev_rec_display(head);
+//
+//
+////        if(search(head,40)==1)
+////            System.out.println("MIL GYA ELEMENT");
+////        else
+////            System.out.println("NOT FOUND");
+//
+//
+//
+//
+//
+//    }
+//}
