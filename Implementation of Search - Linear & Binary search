@@ -1,0 +1,52 @@
+// Implement binary search and Linear Search
+class Main
+{
+    public static boolean linearSearch(int arr[],int x)
+    {
+     for(int i=0;i<arr.length;i++) {
+         if (arr[i] == x)
+             return true;
+     }
+     return false;
+    }
+
+    public static boolean bsearch(int arr[],int x)
+    {
+        int start=0;
+        int end=arr.length-1;
+        while(start<=end)
+        {
+            int mid=start+(end-start)/2;
+            if(arr[mid]==x)
+                return true;
+            else if(arr[mid]>x)
+                end=mid-1;
+            else
+                start=mid+1;
+        }
+        return false;
+    }
+    public static int rbinary(int arr[],int x,int low ,int high)
+    {
+        if(low>high)
+            return -1;
+
+        int mid=low+(high-low)/2;
+        if(arr[mid]==x)
+            return 1;
+        else if(arr[mid]>x)
+            return rbinary(arr,x,low,mid-1);
+        else if(arr[mid]<x)
+            return  rbinary(arr,x,mid+1,high);
+
+        return -1;
+    }
+    public static void main(String args[])
+    {
+        int arr[]=new int[]{1,2,3,4,5,6,7,8,9,10};
+        System.out.println(linearSearch(arr,10));
+        System.out.println(bsearch(arr,10));
+        System.out.println(rbinary(arr,10,0,arr.length-1));
+
+    }
+}
