@@ -1,0 +1,62 @@
+class Main
+{
+    public void insertion(int arr[])
+    {
+        for(int i=1;i<arr.length;i++)
+        {
+            int key=arr[i];
+            int j=i-1;
+            while(j>=0 && arr[j]>key)
+            {
+                arr[j+1]=arr[j];
+                j--;
+            }
+            arr[j+1]=key;
+        }
+    }
+    public void selection(int arr[])
+    {
+        for(int i=0;i<arr.length;i++)
+        {
+            int min_ind=i;
+            for(int j=i+1;j<arr.length;j++)
+            {
+                if(arr[min_ind]>arr[j])
+                    min_ind=j;
+            }
+            int temp=arr[i];
+            arr[i]=arr[min_ind];
+            arr[min_ind]=temp;
+        }
+    }
+    public void bubble(int arr[])
+    {
+        for(int i=0;i<arr.length;i++)
+        {
+            boolean swap=false;
+            for(int j=0;j<arr.length-i-1;j++)
+            {
+                if(arr[j]>arr[j+1])
+                {
+                    int temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                    swap=true;
+                }
+            }
+            if(swap==false)
+                break;
+        }
+    }
+    // Driver Code
+        public static void main(String args[])
+    {
+        int arr[]=new int[]{10,5,8,20,2,18};
+        Main mn=new Main();
+        // mn.bubble(arr);
+        // mn.selection(arr);
+        mn.insertion(arr);
+        for(int i=0;i<arr.length;i++)
+            System.out.print( arr[i]+" ");
+    }
+}
