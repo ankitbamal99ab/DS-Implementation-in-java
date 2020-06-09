@@ -1,0 +1,72 @@
+class Node                      // Node class
+{
+    int data;
+    Node left;
+    Node right;
+    Node(int x)
+    {
+        data=x;
+    }
+}
+class Main                      // Driver class
+{
+    public static void inorder(Node ts)         // Inorder Traversal
+    {
+        if(ts==null)
+            return;
+        inorder(ts.left);
+        System.out.print(ts.data+" ");
+        inorder(ts.right);
+    }
+
+    public static void preorder(Node ts)          // Preoredr Traversal
+    {
+        if(ts==null)
+            return;
+        System.out.print(ts.data+" ");
+        preorder(ts.left);
+        preorder(ts.right);
+    }
+    
+    // Postorder- (Left,Right,Root)
+    
+    public static int getsize(Node ts)                    // get size()
+    {
+        if(ts==null)
+            return 0;
+        else
+            return 1+getsize(ts.left)+getsize(ts.right);
+
+    }
+    public static int getmax(Node ts)                       // get maximum value in Binary tree
+    {
+        if(ts==null)
+            return 0;
+
+            return Math.max(ts.data,Math.max(getmax(ts.left),getmax(ts.right)));
+    }
+    public static int getheight(Node ts)                       // get height of binary tree
+    {
+        if(ts==null)
+            return 0;
+        return Math.max(getheight(ts.left),getheight(ts.right))+1;
+    }
+    public static void main(String args[])                  // Main method
+    {
+     Node ts=new Node(4);
+     ts.left=new Node(5);
+     ts.right=new Node(6);
+     ts.left.left=new Node(7);
+     ts.left.right=new Node(8);
+     ts.right.left=new Node(9);
+     ts.right.right=new Node(10);
+
+
+        preorder(ts);
+        System.out.println();
+        System.out.println(getsize(ts));
+        System.out.println(getmax(ts));
+        System.out.println(getheight(ts));
+
+    }
+}
