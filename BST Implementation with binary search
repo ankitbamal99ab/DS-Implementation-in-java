@@ -1,0 +1,69 @@
+class Node
+{
+    int data;
+    Node left;
+    Node right;
+    Node(int x)
+    {
+        data=x;
+    }
+}
+class Main
+{
+    public static Node insert(Node root,int x)
+    {
+        Node temp=new Node(x);
+        if(root==null)
+        {
+            return temp;
+        }
+        if(root.data>x)
+        {
+            root.left=insert(root.left,x);
+        }else if(root.data<x)
+        {
+            root.right=insert(root.right,x);
+        }
+        return root;
+    }
+    public static void inorder(Node root)
+    {
+        if(root==null)
+            return;
+        inorder(root.left);
+        System.out.print(root.data+" ");
+        inorder(root.right);
+    }
+    public static boolean search(Node root,int x)
+    {
+        while(root!=null)
+        {
+            if(root.data==x)
+                return true;
+            else if(root.data>x)
+                root=root.left;
+            else if(root.data<x)
+                root=root.right;
+        }
+        return false;
+    }
+
+
+    public static void main(String args[])
+    {
+        Node root=null;
+
+        root=insert(root,50);
+        insert(root,30);
+        insert(root,20);
+        insert(root,40);
+        insert(root,70);
+        insert(root,60);
+        insert(root,80);
+        insert(root,90);
+        insert(root,100);
+        insert(root,110);
+        inorder(root);
+        System.out.println( search(root,6));
+    }
+}
