@@ -1,0 +1,57 @@
+class queue
+{
+    int front=0;
+    int rear=0;
+    int arr[]=new int[8];
+    public void push(int a)
+    {
+        if(rear==arr.length-1)
+            return;
+        arr[rear]=a;
+        rear++;
+    }
+    public int pop()
+    {
+        int temp=arr[front];
+        front++;
+
+        return temp;
+    }
+    public void display()
+    {
+        if(front==rear)
+            System.out.println("Queue is Empty");
+        for(int i=front;i<rear;i++)
+        {
+            System.out.print(arr[i]+" ");
+        }
+    }
+    public int getsize(){return rear-front;}
+    public int getFront(){return front;}
+    public int getRear(){return rear;}
+}
+class Main
+{
+    public static void main(String args[])
+    {
+        queue qu=new queue();
+        qu.push(5);
+        qu.push(6);
+        qu.push(7);
+        qu.push(8);
+        System.out.println(qu.pop());
+        System.out.println(qu.pop());
+        qu.push(9);
+        System.out.println(qu.pop());
+        qu.display();
+        qu.pop();
+        qu.pop();
+        System.out.println();
+        qu.display();
+        qu.push(10);
+        qu.display();
+        System.out.println();
+        System.out.println(qu.getsize());
+
+    }
+}
