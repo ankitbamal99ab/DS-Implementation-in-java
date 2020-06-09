@@ -1,0 +1,72 @@
+class QNode
+{
+    int data;
+    QNode next;
+    QNode(int x)
+    {
+        data=x;
+    }
+}
+class queue
+{
+    QNode front,rear;
+    queue()
+    {
+        this.front=this.rear=null;
+    }
+    void push(int a)
+    {
+        QNode qt=new QNode(a);
+        if(this.rear==null)
+        {
+            this.rear=qt;
+            this.front=qt;
+        }
+        this.rear.next=qt;
+        this.rear=qt;
+    }
+    void pop()
+    {
+        if(this.front==null)
+            return;
+        QNode val=this.front;
+        front=front.next;
+
+
+        if(front==null)
+            rear=null;
+    }
+     int  getfront(){return front.data;}
+     int getrear(){return rear.data;}
+    void display()
+    {
+        if(front==null)
+            return;
+        QNode curr=front;
+        while(curr!=null)
+        {
+            System.out.print(curr.data+" ");
+            curr=curr.next;
+        }
+    }
+}
+class Main
+{
+    public static void main(String args[])
+    {
+        queue qu=new queue();
+        qu.push(5);
+        qu.push(6);
+        qu.push(7);
+        qu.push(8);
+        qu.push(9);
+        qu.push(10);
+        qu.push(11);
+        qu.pop();
+        qu.pop();
+        System.out.println(qu.getfront());
+        System.out.println(qu.getrear());
+        qu.display();
+
+    }
+}
