@@ -1,0 +1,70 @@
+
+class Main
+{
+    static void addedge(ArrayList<ArrayList<Integer>>adj,int u,int v)
+    {
+        adj.get(u).add(v);
+        adj.get(v).add(u);
+    }
+    static void BFS(ArrayList<ArrayList<Integer>>adj,int V)      // call of Main BFS Function , This function helps to manage disconnect graph also
+    {
+        boolean visited[]=new boolean[V+1];
+        for(int i=0;i<V;i++)
+            visited[i]=false;
+
+
+        for(int i=0;i<V;i++)
+        {
+            if(visited[i]==false)
+                BFSwork(adj,i,visited);
+        }
+    }
+    static void BFSwork(ArrayList<ArrayList<Integer>>adj,int s,boolean visited[] )           // Main function which is responsibe to print values
+    {
+        Queue<Integer> qu=new LinkedList<>();
+        visited[s]=true;
+        qu.add(s);
+        while(qu.isEmpty()==false)
+        {
+            int u= qu.poll();
+            System.out.print(u+" ");
+
+            for(int v: adj.get(u))
+            {
+                if(visited[v]==false)
+                {
+                    visited[v]=true;
+                    qu.add(v);
+                }
+            }
+        }
+    }
+    static void printlist(ArrayList<ArrayList<Integer>>adj,int V)                   // Print Adjacency List
+    {
+        for(int i=0;i<V;i++)
+        {
+            System.out.print(i);
+            for(int j=0;j<adj.get(i).size();j++)
+            {
+                System.out.print(" -> "+adj.get(i).get(j));
+            }
+            System.out.println();
+        }
+    }
+    public static void main(String args[])
+    {
+        int V=5;
+        ArrayList<ArrayList<Integer>>adj=new ArrayList<ArrayList<Integer>>(V);
+
+        for(int i=0;i<V;i++)
+            adj.add(new ArrayList<Integer>());
+
+        addedge(adj,0,1);
+        addedge(adj,0,2);
+        addedge(adj,1,2);
+        addedge(adj,1,3);
+
+//        printlist(adj,V);
+        BFS(adj,V);
+    }
+}
