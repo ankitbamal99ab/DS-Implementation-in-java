@@ -1,0 +1,67 @@
+// Longest subsequence problem
+class Main
+{
+    static int simplerecursive(String s1,String s2,int m,int n)
+    {
+        if(m==0 || n==0)
+            return 0;
+        if(s1.charAt(m-1)==s2.charAt(n-1))
+            return 1+simplerecursive(s1,s2,m-1,n-1);
+        else
+            return Math.max(simplerecursive(s1,s2,m-1,n),simplerecursive(s1,s2,m,n-1));
+    }
+    static int memoization(String s1,String s2,int m,int n)  // Dhynamic programming Memoization Method
+    {
+        int arr[][]=new int[m+1][n+1];
+        for(int i=0;i<=m;i++)
+            for(int j=0;j<=n;j++)
+                arr[i][j]=-1;
+
+            if(arr[m][n]!=-1)
+            {
+                return arr[m][n];
+            }
+
+            if(m==0|| n==0)
+                arr[m][n]=0;
+            else if(s1.charAt(m-1)==s2.charAt(n-1))
+                arr[m][n]=1+memoization(s1,s2,m-1,n-1);
+            else
+                {
+                    arr[m][n]=Math.max(memoization(s1,s2,m-1,n),memoization(s1,s2,m,n-1));
+                }
+
+
+            return arr[m][n];
+    }
+    static int tabulation(String s1,String s2,int m,int n)     //Dhynamic programming Tabulation Method
+    {
+        int arr[][]=new int[m+1][n+1];
+        for(int i=0;i<=m;i++)arr[i][0]=0;
+        for(int i=1;i<=n;i++)arr[0][i]=0;
+
+
+
+        for(int i=1;i<=m;i++)
+            for(int j=1;j<=n;j++)
+                if(s1.charAt(i-1)==s2.charAt(j-1))
+                    arr[i][j]=1+arr[i-1][j-1];
+                else
+                    arr[i][j]=Math.max(arr[i-1][j],arr[i][j-1]);
+
+
+
+        return arr[m][n];
+    }
+    public static void main(String args[])
+    {
+        String s1="ABCDGH";
+        String s2="AEDFHR";
+
+        System.out.println(simplerecursive(s1,s2,s1.length(),s2.length()));
+        System.out.println(memoization(s1,s2,s1.length(),s2.length()));
+        System.out.println(tabulation(s1,s2,s1.length(),s2.length()));
+
+    }
+
+}
