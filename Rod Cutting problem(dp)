@@ -1,0 +1,39 @@
+class Main
+{
+    public static int rodcuttingdp(int len[],int price[],int N,int n)
+    {
+        int dp[][]=new int[n+1][N+1];
+        for(int i=0;i<=n;i++) dp[i][0]=0;
+        for(int j=0;j<=N;j++) dp[0][j]=0;
+
+        for(int i=1;i<=n;i++)
+            for(int j=1;j<=N;j++)
+            {
+                if(len[i-1]>j)
+                    dp[i][j]=dp[i-1][j];
+                else
+                    dp[i][j]=Math.max(dp[i-1][j],price[i-1]+dp[i][j-len[i-1]]);
+            }
+        return dp[n][N];
+    }
+    public static int rodcutting(int len[],int price[],int N,int n)
+    {
+        if(n==0)
+            return 0;
+        if(len[n-1]>N)
+            return rodcutting(len,price,N,n-1);
+        else
+            return Math.max(rodcutting(len,price,N,n-1),price[n-1]+rodcutting(len,price,N-len[n-1],n));
+    }
+    public static void main(String args[])
+    {
+        int N=8;
+        int price[]={3,5,8,9,10,17,17,20};
+        int len[]=new int[N];
+        for(int i=0;i<N;i++)
+            len[i]=i+1;
+        System.out.println(rodcutting(len,price,N,N));
+        System.out.println(rodcuttingdp(len,price,N,N));
+
+    }
+}
