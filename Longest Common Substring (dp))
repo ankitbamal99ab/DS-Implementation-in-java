@@ -1,0 +1,30 @@
+
+class Main
+{
+    public static int substring(String str1,String str2,int m,int n)
+    {
+        int dp[][]=new int[m+1][n+1];
+        for (int j=0;j<=m;j++) dp[j][0]=0;
+        for (int i=0;i<=n;i++) dp[0][i]=0;
+        int res=0;
+
+        for(int i=1;i<=m;i++)
+            for(int j=1;j<=n;j++)
+            {
+                if(str1.charAt(i-1)==str2.charAt(j-1))
+                {
+                    dp[i][j]=dp[i-1][j-1]+1;
+                    res=Math.max(res,dp[i][j]);
+                }
+                else
+                    dp[i][j]=0;
+            }
+        return res;
+    }
+    public static void main(String args[])
+    {
+        String str1="geeksforgeeks";
+        String str2="geeksquixz";
+        System.out.println(substring(str1,str2,str1.length(),str2.length()));
+    }
+}
