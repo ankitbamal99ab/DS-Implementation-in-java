@@ -1,0 +1,56 @@
+class Node
+{
+    Node left;
+    Node right;
+    int val;
+    int height;
+    Node(int x)
+    {
+        val=x;
+    }
+}
+class Main
+{
+    static void bottom_view(Node root)
+    {
+        if(root==null)
+            return;
+        TreeMap<Integer,Integer> tmp=new TreeMap<>();
+        Queue<Node> qt=new LinkedList<>();
+        qt.add(root);
+        while(!qt.isEmpty())
+        {
+            Node temp=qt.remove();
+            int hd=temp.height;
+
+
+                tmp.put(hd,temp.val);
+
+            if(temp.left!=null)
+            {
+                temp.left.height=hd-1;
+                qt.add(temp.left);
+            }
+            if(temp.right!=null)
+            {
+                temp.right.height=hd+1;
+                qt.add(temp.right);
+            }
+        }
+        System.out.println(tmp.values());
+    }
+    public static void main(String args[])
+    {
+        Node root = new Node(20);
+        root.left = new Node(8);
+        root.right = new Node(22);
+        root.left.left = new Node(5);
+        root.left.right = new Node(3);
+        root.right.left = new Node(4);
+        root.right.right = new Node(25);
+        root.left.right.left = new Node(10);
+        root.left.right.right = new Node(14);
+
+        bottom_view(root);
+    }
+}
