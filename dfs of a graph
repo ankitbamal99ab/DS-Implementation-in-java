@@ -1,0 +1,17 @@
+    static void dfsrec(ArrayList<ArrayList<Integer>> adj,int s,boolean [] visited)
+    {
+        visited[s]=true;
+        System.out.print(" "+s);
+        for(int u:adj.get(s))
+        {
+            if(visited[u]==false)
+                dfsrec(adj,u,visited);
+        }
+    }
+    
+    
+    static void dfs(ArrayList<ArrayList<Integer>> adj,int v,int s)
+    {
+        boolean visited[]=new boolean[v+1];
+        dfsrec(adj,s,visited);
+    }
