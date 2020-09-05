@@ -1,0 +1,31 @@
+class Solution {
+    public int bulbSwitch(int n) {
+        /*
+        Input:1,2,3,4,5,6,7,8,9
+        The task is- Toggle the multiple of every input value
+        1-1,2,3,4,5,6,7,8,9  -Every bulb is on
+        2-2,4,6,8            -toggle of 2  Multiple
+        3-3,9                -toggle of 3  Multiple
+        4-4,8                -toggle of 4  Multiple
+        
+        find out the answer from array which is on and count++;
+        Brute force- Perform the same step, given as above
+        Efficient-   check for perfect square of input (1 to n) if perfect square is 
+                        in range then count++;
+        WHY:-
+                32
+                1*32 -- 1 On krega 32 off kr dega
+                2*16 -- 2 on krega 16 off kr dega
+                4*8  -- Same approach
+                8*4
+                16*2
+                32*1
+                
+                16
+                4*4   -- 4 on krega but , no pair of off 
+                
+        */
+        
+        return (int)Math.sqrt(n);
+    }
+}
