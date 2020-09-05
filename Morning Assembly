@@ -1,0 +1,52 @@
+class Main
+{
+    static int morning_assembly(int arr[])
+    {
+        /*
+        Question is , sort an array
+        1 move:- takes 1 unit cost
+        Move:-
+        1-choose element and put into first
+        2-choose element and put into last
+
+
+        Approach:-
+        If we find numbers whose relative order is perfect then we can easily find the numbers with wrong relative order
+        Ex:- 3,4,2,1,8,9,5,7,6
+        3,4,5,6 - Relative order is perfect for this, imperfect_order= (arr.length-perfect_order.length)
+        we can move any element in 1 unit of cost so the o/p will be length of Imperfect_relative Order
+
+        How to find length of perfect_relative order
+        1- Longest Consecutive Subsequence
+
+        O/p=arr.length-length(LCS)
+        */
+
+        // find LCS
+        int temp=0;
+        HashMap<Integer,Integer> hmp=new HashMap<>();
+        for(int i=0;i<arr.length;i++)
+        {
+            if(hmp.containsKey(arr[i]-1)==true)
+                hmp.put(arr[i],hmp.get(arr[i]-1)+1);
+            else
+                hmp.put(arr[i],1);
+        }
+        int result=0;
+        for(int i:hmp.keySet())
+        {
+            result=Math.max(result,hmp.get(i));
+        }
+
+        return arr.length-result;
+    }
+    public static void main(String args[])
+    {
+        int arr[]={4,3,1,2};
+
+        System.out.println(morning_assembly(arr));
+    }
+}
+
+
+Note:-if order is not given or random then we will use of Longest Increasing sequence
