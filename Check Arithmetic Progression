@@ -1,0 +1,89 @@
+class Main
+{
+    static  boolean checkAP1(int arr[])
+    {
+        /*
+        Efficient Approach
+        1- For find or make an Ap we need two parameters
+          a-a(first value)
+          b-d(Common difference)
+          Sequence of AP :- a,a+d,a+2d,a+3d,a+3d,a+5d ....n
+          Algorithm
+          1- Find 'a' which is the minimum number in an array
+          2- Find d which is equal to 2nd minimum number-1st minimum number
+          3- Make a hashSet and store values of an array
+          4- make a loop for every a+d check whether it is present is hashmap or not if yes , remove it
+          5- if hashmap is empty return true, else return false.
+        */
+        HashSet<Integer>hs=new HashSet<>();
+        int a=Integer.MAX_VALUE;
+        int b=Integer.MAX_VALUE;
+        for(int i:arr)
+        {
+            if(i<a)
+            {
+                b=a;  a=i;
+            }
+            else if(i>a && b>i)
+                b=i;
+
+            hs.add(i);
+        }
+
+        if(hs.size()!=arr.length)
+            return false;
+        int first_val=a;
+        int commn_diff=b-first_val;
+        int temp=first_val;
+        for(int i=0;i<arr.length;i++)
+        {
+
+
+            if(hs.contains(temp)==true)
+                hs.remove(temp);
+
+
+            temp+=commn_diff;
+        }
+
+        if(hs.isEmpty()==true)
+            return true;
+
+        return false;
+
+    }
+    static boolean checkAP(int arr[])
+    {
+        // Approach 1
+        /*
+        For Ap , Mandotry conditions is that the difference between two
+                   consecutive number is same
+                   a1-a2=a2-a3=a3-a4=a4-a5....
+                   Algorith:
+                   1- Sort an Array (O(nlogn))
+                   2- make a loop and check for every consecutive number;
+         */
+
+        Arrays.sort(arr);
+        boolean flag=true;
+        int d=arr[1]-arr[0];
+        for(int i=0;i<arr.length-1;i++) {
+            if(arr[i+1]-arr[i]==d)
+                continue;
+            else{
+                flag=false;
+                break;
+            }
+        }
+        if(flag==true)
+            return true;
+
+        return false;
+    }
+    public static void main(String args [])
+    {
+        int arr[]={8,8,8};
+//        System.out.println(checkAP(arr));
+        System.out.println(checkAP1(arr));
+    }
+}
