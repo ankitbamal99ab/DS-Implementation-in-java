@@ -1,0 +1,37 @@
+class Solution {
+    public int leastBricks(List<List<Integer>> wall) {
+        /*
+        Use prefix Sum Array
+        
+        1--Make a hashMap and store values of prefix sum via row
+        2-- store prefix sum of every row as key and frequency of prefix sum as a value
+        3-- Everytimes prefix sum change to zero before traversal to next row
+        4-- make a loop -1 in row (because last of every row , discontinuity is max)
+        5-- find max from values(hashmap)
+        5-- return size-max
+            WHY size-max
+            because max given us maximum discontinuity between bricks 
+        */
+        
+        int a=0;
+        HashMap<Integer,Integer>hmp=new HashMap<>();
+        for(int i=0;i<wall.size();i++)
+        {
+            for(int j=0;j<wall.get(i).size()-1;j++)
+            {
+                a+=wall.get(i).get(j);
+                if(hmp.containsKey(a)==true)
+                    hmp.put(a,hmp.get(a)+1);
+                else
+                    hmp.put(a,1);
+            }
+            a=0;
+        }
+        int res=0;
+        for(int i:hmp.keySet())
+        {
+            res=Math.max(res,hmp.get(i));
+        }
+        return wall.size()-res;
+    }
+}
