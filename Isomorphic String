@@ -1,0 +1,57 @@
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        
+        
+        /*
+            Make a hashMap and HashSet for mapped strings, s & t
+            HashMap is used for mapping s string with t string
+             ** if any character is already mapped in HashMap, then check current t charcter, its same
+                 as  mapping character or not. If (not) return fasle;
+               Example:- s=aba   t=efg
+               
+               hashMap          hashSet
+               a=e               e
+               b=g               g
+               a(it is already is in hashmap, check here if current character of t string is same as
+                mapped character of a or not , here no so return false)
+                
+                **
+                Example:- abc       t=ded
+                HashMap            HashSet
+                a=d                 d
+                b=e                 e
+                c=d (but d is already mapped with with a, so return false)
+               
+        */
+        if(s.length()!=t.length())
+            return false;
+        
+        HashMap<Character,Character> hmp=new HashMap<>();
+        HashSet<Character>hs=new HashSet<>();
+        
+        for(int i=0;i<s.length();i++)
+        {
+            if(hmp.containsKey(s.charAt(i))==true)
+            {
+                if(hmp.get(s.charAt(i))==t.charAt(i))
+                    continue;
+                else 
+                    return false;
+            }
+            else
+            {
+                if(!hs.contains(t.charAt(i)))
+                {
+                    hmp.put(s.charAt(i),t.charAt(i));
+                    hs.add(t.charAt(i));
+                }
+                else
+                    return false;
+               
+            }
+        }
+        
+        return true;
+        
+    }
+}
