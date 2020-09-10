@@ -1,0 +1,52 @@
+class Main
+{
+    public  static int no_of(int arr[][])
+    {
+        if(arr.length==0)
+            return 0;
+        HashMap<Integer,Integer>hmpx=new HashMap<>();
+        HashMap<Integer,Integer>hmpy=new HashMap<>();
+        HashMap<String,Integer>hmps=new HashMap<>();
+        int res=0;
+
+        for(int i=0;i<arr.length;i++)
+        {
+            int x=arr[i][0];
+            int y=arr[i][1];
+
+            if(hmpx.containsKey(x)==true)
+            {
+                res=res+hmpx.get(x);
+                hmpx.put(x,hmpx.get(x)+1);
+            }
+            else
+                hmpx.put(x,1);
+
+
+            if(hmpy.containsKey(y)==true)
+            {
+                res=res+hmpy.get(y);
+                hmpy.put(x,hmpy.get(y)+1);
+            }
+            else
+                hmpy.put(y,1);
+
+            String str=x+"*"+y;
+            if(hmps.containsKey(str)==true)
+            {
+                res=res-2*(hmps.get(str));
+                hmps.put(str,hmps.get(str)+1);
+            }
+            else
+                hmps.put(str,1);
+        }
+        return res;
+    }
+    public static  void main(String args[])
+    {
+//        int arr[][]={{1,4},{2,4},{1,5},{1,4},{6,4},{1,6},{1,4}};
+            int arr[][]={{1,1},{7,5}};
+        System.out.println(no_of(arr));
+
+    }
+}
