@@ -1,0 +1,47 @@
+class Solution {
+    
+    static  int count(int arr[], int mid)
+    {
+        int count=1;
+        int temp=0;
+        for(int i: arr)
+        {
+            temp+=i;
+            if(temp>mid)
+            {
+                count++;
+                temp=i;
+            }
+        }
+        return count;
+    }
+    
+    
+    public int splitArray(int[] nums, int m)
+    {
+        
+        int lo=0;
+        int hi=0;
+        for(int i:nums)
+        {
+            lo=Math.max(lo,i);
+            hi+=i;
+        }
+        int ans=hi;
+        while(lo<=hi)
+        {
+            int mid=(lo+hi)/2;
+            int part=count(nums,mid);
+            if(part<=m)
+            {
+                ans=mid;
+                hi=mid-1;
+            }
+            else  if(part>m)
+            {
+                lo=mid+1;
+            }
+        }
+        return ans;
+    }
+}
